@@ -14,11 +14,12 @@ import java.util.regex.Pattern;
 //Used this to help myself with the setup of the config file : https://stackoverflow.com/questions/16273174/how-to-read-a-configuration-file-in-java
 public class Config {
 
-    private ArrayList<String> victimsList;
-    private ArrayList<String> messagesList;
+    private ArrayList<String> victimsList = new ArrayList<>();
+    private ArrayList<String> messagesList = new ArrayList<>();
     private int nbGroup;
 
     public Config(int nbGroup){
+
         Properties prop = new Properties();
         String fileName = ".\\smtpPrank.config";
         try (FileInputStream fis = new FileInputStream(fileName)) {
@@ -30,7 +31,10 @@ public class Config {
         }
         //For the array, in the config file, we'll use "#" to delimit the emails and the messages
         String[] email = prop.get("emails").toString().split("#");
-        Collections.addAll(victimsList, email);
+        if(email[0] != null){
+            Collections.addAll(victimsList, email);
+        }
+
 
         try{
             if(!validateAllEmail()){

@@ -5,20 +5,30 @@ import java.nio.charset.StandardCharsets;
 
 public class Client {
 
+    private static int port = 1080;
+    private static String ipv4 = "localhost";
 
-    public static void main(String args[]) {
-        try (Socket socket = new Socket("localhost", 1234);
-        var in = new BufferedReader(
-                new InputStreamReader(socket.getInputStream(),
+    static Config config;
+
+    public Client(int port,String ipv4){
+        Client.port = port;
+        Client.ipv4 = ipv4;
+    }
+
+    public static void main(String[] args) {
+
+        try (Socket socket = new Socket(ipv4, port);
+            var in = new BufferedReader(
+                    new InputStreamReader(socket.getInputStream(),
                         StandardCharsets.UTF_8));
-        var out = new BufferedWriter(
-                new OutputStreamWriter(socket.getOutputStream(),
-                        StandardCharsets.UTF_8))){
-            for (int i = 0; i < 10; i++) {
-                out.write("Hello " + i + "\n");
-                out.flush();
-                System.out.println("Echo: " + in.readLine());
-            }
+            var out = new BufferedWriter(
+                    new OutputStreamWriter(socket.getOutputStream(),
+                        StandardCharsets.UTF_8)))
+        {
+
+            config = new Config(4);
+
+
         } catch (IOException e) {
             System.out.println("Client: exc.: " + e);
         }
