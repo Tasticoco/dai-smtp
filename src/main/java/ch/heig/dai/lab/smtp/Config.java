@@ -1,4 +1,4 @@
-package src;
+package ch.heig.dai.lab.smtp;
 
 
 import java.io.FileInputStream;
