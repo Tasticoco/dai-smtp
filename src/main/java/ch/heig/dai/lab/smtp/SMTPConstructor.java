@@ -19,13 +19,14 @@ public class SMTPConstructor {
         this.mailTo = mailTo;
         this.mailToUsername = mailToUsername;
 
-        if (carbonCopy != null || carbonCopy.length != 0){
+        if (carbonCopy == null || carbonCopy.length == 0){
+            carbonCopyLength = 0;
+            this.carbonCopy = null;
+        } else {
+
             carbonCopyLength = carbonCopy.length;
             this.carbonCopy = new String[carbonCopy.length];
             System.arraycopy(carbonCopy,0,this.carbonCopy,0,carbonCopy.length);
-        } else {
-            carbonCopyLength = 0;
-            this.carbonCopy = null;
         }
 
         this.subject = subject;
@@ -38,7 +39,7 @@ public class SMTPConstructor {
 
         data = "From: " + mailFromUsername + " <" + mailFrom + ">\r\n";
         data += "To: " + mailToUsername + " <" + mailTo + ">\r\n";
-        data += "CC: " + carbonCopy[0] + "\r\n";
+        if(carbonCopyLength > 0) data += "CC: " + carbonCopy[0] + "\r\n";
         data += "Subject: " + subject + "\r\n";
         data += "\r\n";
         data += messageText + "\r\n";
