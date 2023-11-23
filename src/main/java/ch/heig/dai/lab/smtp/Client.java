@@ -6,7 +6,7 @@ import java.nio.charset.StandardCharsets;
 
 public class Client {
 
-    private static int port = 1080;
+    private static int port = 1025;
     private static String ipv4 = "localhost";
 
     static Config config;
@@ -28,6 +28,7 @@ public class Client {
         {
 
             config = new Config(4);
+
 
 
         } catch (IOException e) {
