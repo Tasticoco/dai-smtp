@@ -70,11 +70,6 @@ public class Client {
             while(!(line = in.readLine()).equals(smtpRcvMess[2])){
                 System.out.println(line);
             }
-            out.write("DATA\r\n");
-            System.out.println("DATA\r\n");
-//            while(!(line = in.readLine()).equals(smtpRcvMess[0])){
-//                System.out.println(line);
-//            }
             System.out.println(line);
             lineOut = testMail.data();
             out.write(lineOut);

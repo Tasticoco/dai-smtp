@@ -36,8 +36,8 @@ public class SMTPConstructor {
     public String data(){
 
         String data;
-
-        data = "From: " + mailFromUsername + " <" + mailFrom + ">\r\n";
+        data = "DATA\r\n";
+        data += "From: " + mailFromUsername + " <" + mailFrom + ">\r\n";
         data += "To: " + mailToUsername + " <" + mailTo + ">\r\n";
         if(carbonCopyLength > 0) data += "CC: " + carbonCopy[0] + "\r\n";
         data += "Subject: " + subject + "\r\n";
