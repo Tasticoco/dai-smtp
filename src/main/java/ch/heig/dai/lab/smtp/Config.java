@@ -13,12 +13,10 @@ import java.util.regex.Pattern;
 
 //Used this to help myself with the setup of the config file : https://stackoverflow.com/questions/16273174/how-to-read-a-configuration-file-in-java
 public class Config {
+    protected final ArrayList<String> victimsList = new ArrayList<>();
+    protected final ArrayList<String> messagesList = new ArrayList<>();
 
-    private ArrayList<String> victimsList = new ArrayList<>();
-    private ArrayList<String> messagesList = new ArrayList<>();
-    private int nbGroup;
-
-    public Config(int nbGroup){
+    public Config(){
 
         Properties prop = new Properties();
         String fileName = ".\\smtpPrank.config";
@@ -46,11 +44,11 @@ public class Config {
 
         String[] messages = prop.get("messages").toString().split("#");
         Collections.addAll(messagesList, messages);
-
-        this.nbGroup = nbGroup;
     }
 
     public boolean isEmailValid(String email){
+        if (email == null)
+            return false;
 
         String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\."+
                             "[a-zA-Z0-9_+&*-]+)*@" +
@@ -58,8 +56,6 @@ public class Config {
                             "A-Z]{2,7}$";
 
         Pattern pat = Pattern.compile(emailRegex);
-        if (email == null)
-            return false;
         return pat.matcher(email).matches();
     }
 
