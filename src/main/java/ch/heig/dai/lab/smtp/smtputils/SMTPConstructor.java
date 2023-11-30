@@ -1,5 +1,12 @@
-package ch.heig.dai.lab.smtp;
+package ch.heig.dai.lab.smtp.smtputils;
 
+/**
+ * This is the SMTPConstructor class. It is used to construct the SMTP messages. {@link SMTPConstructor}
+ *
+ * @author      Arthur Junod
+ * @author      Edwin Haeffner
+ * Date :       30/11/2023
+ */
 public class SMTPConstructor {
 
     final private String mailFrom
@@ -11,8 +18,19 @@ public class SMTPConstructor {
 
     final private String[] carbonCopy; //CC in the mail
 
-    final public int carbonCopyLength;
+    final protected int carbonCopyLength;
+    private int CCIndex = 0;
 
+    /**
+     * Constructor for the SMTPConstructor class
+     * @param mailFrom          the mail address of the sender
+     * @param mailFromUsername  the username of the sender
+     * @param mailTo            the mail address of the receiver
+     * @param mailToUsername    the username of the receiver
+     * @param carbonCopy        the other email addresses to send the mail to (CC)
+     * @param subject           the subject of the mail
+     * @param messageText       the body of the mail
+     */
     public SMTPConstructor(String mailFrom,String mailFromUsername,String mailTo,String mailToUsername,String[] carbonCopy,String subject,String messageText){
         this.mailFrom = mailFrom;
         this.mailFromUsername = mailFromUsername;
@@ -33,6 +51,9 @@ public class SMTPConstructor {
         this.messageText = messageText;
     }
 
+    /**
+     * @return the DATA part of the mail
+     */
     public String data(){
 
         String data;
@@ -48,27 +69,32 @@ public class SMTPConstructor {
         return data;
     }
 
+    /**
+     * @return the MAIL FROM part of the mail
+     */
     public String from(){
         return "MAIL FROM: <" + mailFrom + ">\r\n";
     }
 
+    /**
+     * @return the RCPT TO part of the mail
+     */
     public String rcptTo(){
         return "RCPT TO: <" + mailTo + ">\r\n";
     }
 
+    /**
+     * @return the MAIL FROM part of the mail
+     */
     public String rcptToCC(){
-        return "RCPT TO: <" + carbonCopy + ">\r\n";
+        return "RCPT TO: <" + carbonCopy[CCIndex++] + ">\r\n";
     }
 
+    /**
+     * @return the EHLO part of the mail
+     */
     public String hello(){
         return "EHLO " + "https://www.youtube.com/watch?v=dQw4w9WgXcQ" + "\r\n";
     }
-
-    public String quit(){
-        return "QUIT\r\n";
-    }
-
-
-
 
 }
