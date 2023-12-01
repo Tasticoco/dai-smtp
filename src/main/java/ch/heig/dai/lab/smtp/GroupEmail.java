@@ -19,7 +19,7 @@ public class GroupEmail {
      */
     public GroupEmail(int nbGroup, Config confEmail){
         this.nbGroup = nbGroup;
-        ArrayList<String> copyVictim = new ArrayList<>(confEmail.victimsList);
+        ArrayList<ArrayList<String>> copyVictim = new ArrayList<>(confEmail.VICTIM_LIST);
 
         int nbByGroup = copyVictim.size() / nbGroup;
 
@@ -28,11 +28,11 @@ public class GroupEmail {
         for(int j = 0; j < nbGroup - 1; ++j) {
             for (int i = 0; i < nbByGroup; i++) {
                 int randomIndex = rand.nextInt(copyVictim.size());
-                groups.get(j).add(copyVictim.get(randomIndex));
+                groups.get(j).add(copyVictim.get(randomIndex).get(0));
                 copyVictim.remove(randomIndex);
             }
         }
-        groups.getLast().addAll(copyVictim);
+     //   groups.getLast().addAll(copyVictim);
     }
 
     /**

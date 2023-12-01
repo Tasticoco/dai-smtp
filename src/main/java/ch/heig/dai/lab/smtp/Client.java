@@ -3,6 +3,7 @@ package ch.heig.dai.lab.smtp;
 import ch.heig.dai.lab.smtp.smtputils.SMTPConstructor;
 
 import java.io.*;
+import java.util.ArrayList;
 
 import static ch.heig.dai.lab.smtp.smtputils.SMTPSender.sendMessage;
 
@@ -20,9 +21,11 @@ public class Client {
 
     public static void main(String[] args) throws InterruptedException, IOException {
 
-
+            Config config = new Config();
             System.out.println("Prank program SMTP");
 
+            ArrayList<ArrayList<String>> copyVictim = new ArrayList<>(config.VICTIM_LIST);
+            ArrayList<ArrayList<String>> copyMessage = new ArrayList<>(config.MESSAGE_LIST);
 
 
             SMTPConstructor testMail = new SMTPConstructor("sender@example.com","Sender",

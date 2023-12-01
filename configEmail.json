@@ -1,0 +1,196 @@
+{
+  "VICTIM_LIST": [
+    {
+      "email": "jean-claude.van-damme@tropcool.com",
+      "username": "Jean-Claude Van Damme"
+    },
+    {
+      "email": "nicolas.sarkozy@ohouilafrance.fr",
+      "username": "Nicolas Sarkozy"
+    },
+    {
+      "email": "alain.berset@surlemontquandlesoleil.ch",
+      "username": "Alain Berset"
+    },
+    {
+      "email": "stephano.burzio@mentimeter.com",
+      "username": "Stephano Burzio"
+    },
+    {
+      "email": "cornichonman@superhero.com",
+      "username": "Cornichon Man"
+    },
+    {
+      "email": "superpuce@animal.com",
+      "username": "Super Puce"
+    },
+    {
+      "email": "madamecatastrophe@desastre.com",
+      "username": "Madame Catastrophe"
+    },
+    {
+      "email": "monsieurgaffes@maladroit.com",
+      "username": "Monsieur Gaffes"
+    },
+    {
+      "email": "bruce.wayne@batman.com",
+      "username": "Bruce Wayne"
+    },
+    {
+      "email": "peter.parker@spiderman.com",
+      "username": "Peter Parker"
+    },
+    {
+      "email": "tony.stark@ironman.com",
+      "username": "Tony Stark"
+    },
+    {
+      "email": "clark.kent@superman.com",
+      "username": "Clark Kent"
+    },
+    {
+      "email": "brad.pitt@gmail.com",
+      "username": "Brad Pitt"
+    },
+    {
+      "email": "angelina.jolie@yahoo.com",
+      "username": "Angelina Jolie"
+    },
+    {
+      "email": "leonardo.dicaprio@hotmail.com",
+      "username": "Leonardo DiCaprio"
+    },
+    {
+      "email": "michelle.obama@gmail.com",
+      "username": "Michelle Obama"
+    },
+    {
+      "email": "luke.skywalker@jedimaster.com",
+      "username": "Luke Skywalker"
+    },
+    {
+      "email": "leia.organa@rebelalliance.org",
+      "username": "Leia Organa"
+    },
+    {
+      "email": "darth.vader@sithlord.com",
+      "username": "Darth Vader"
+    },
+    {
+      "email": "han.solo@smuggler.net",
+      "username": "Han Solo"
+    },
+    {
+      "email": "yoda@wisejedi.org",
+      "username": "Yoda"
+    },
+    {
+      "email": "padme.amidala@nabooqueen.com",
+      "username": "Padmé Amidala"
+    },
+    {
+      "email": "obi-wan.kenobi@jediknight.org",
+      "username": "Obi-Wan Kenobi"
+    },
+    {
+      "email": "chewbacca@wookieeplanet.com",
+      "username": "Chewbacca"
+    },
+    {
+      "email": "ezreal@piltover.net",
+      "username": "Ezreal"
+    },
+    {
+      "email": "ahri@vastaya.com",
+      "username": "Ahri"
+    },
+    {
+      "email": "zed@shadowisles.com",
+      "username": "Zed"
+    },
+    {
+      "email": "jinx@zaunlife.com",
+      "username": "Jinx"
+    },
+    {
+      "email": "garen@demacia.com",
+      "username": "Garen"
+    },
+    {
+      "email": "lux@demacia.com",
+      "username": "Lux"
+    },
+    {
+      "email": "yasuo@ionia.com",
+      "username": "Yasuo"
+    },
+    {
+      "email": "katarina@noxus.com",
+      "username": "Katarina"
+    },
+    {
+      "email": "aelita.stones@kadicacademy.fr",
+      "username": "Aelita Stones"
+    },
+    {
+      "email": "ulrich.stern@kadicacademy.fr",
+      "username": "Ulrich Stern"
+    },
+    {
+      "email": "yumi.ishiyama@kadicacademy.fr",
+      "username": "Yumi Ishiyama"
+    },
+    {
+      "email": "jeremy.belpois@kadicacademy.fr",
+      "username": "Jeremy Belpois"
+    },
+    {
+      "email": "william.dunbar@kadicacademy.fr",
+      "username": "William Dunbar"
+    },
+    {
+      "email": "odd.della.robbia@kadicacademy.fr",
+      "username": "Odd Della Robbia"
+    },
+    {
+      "email": "sissi.delmas@kadicacademy.fr",
+      "username": "Sissi Delmas"
+    },
+    {
+      "email": "xana@lyoko.com",
+      "username": "XANA"
+    },
+    {
+      "email": "glados@aperturescience.com",
+      "username": "GLaDOS"
+    },
+    {
+      "email": "chell@apertureresearch.com",
+      "username": "Chell"
+    },
+    {
+      "email": "wheatley@aperturescience.com",
+      "username": "Wheatley"
+    },
+    {
+      "email": "cave.johnson@aperturescience.com",
+      "username": "Cave Johnson"
+    },
+    {
+      "email": "ursula.wyss@swisspolitics.com",
+      "username": "Ursula Wyss"
+    },
+    {
+      "email": "guy.parmelin@swisspolitics.com",
+      "username": "Guy Parmelin"
+    },
+    {
+      "email": "simonetta.sommaruga@swisspolitics.com",
+      "username": "Simonetta Sommaruga"
+    },
+    {
+      "email": "ignazio.cassis@swisspolitics.com",
+      "username": "Ignazio Cassis"
+    }
+  ]
+}
