@@ -1,7 +1,7 @@
 package ch.heig.dai.lab.smtp.smtputils;
 
 import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 
 /**
  * This is the SMTPConstructor class. It is used to construct the SMTP messages. {@link SMTPConstructor}
@@ -21,7 +21,7 @@ public class SMTPConstructor {
 
     final private Charset charset;
 
-    final private String[] carbonCopy; //CC in the mail
+    final private ArrayList<String> carbonCopy; //CC in the mail
 
     final protected int carbonCopyLength;
     private int CCIndex = 0;
@@ -35,9 +35,10 @@ public class SMTPConstructor {
      * @param carbonCopy        the other email addresses to send the mail to (CC)
      * @param subject           the subject of the mail
      * @param messageText       the body of the mail
+     * @param encoding          the encoding used for the mail
      */
     public SMTPConstructor(String mailFrom,String mailFromUsername,String mailTo,String mailToUsername,
-                           String[] carbonCopy,String subject,String messageText, Charset encoding){
+                           ArrayList<String> carbonCopy,String subject,String messageText, Charset encoding){
 
         this.mailFrom = mailFrom;
         this.mailFromUsername = mailFromUsername;
@@ -45,14 +46,13 @@ public class SMTPConstructor {
         this.mailToUsername = mailToUsername;
         this.charset = encoding;
 
-        if (carbonCopy == null || carbonCopy.length == 0){
+        if (carbonCopy == null || carbonCopy.isEmpty()){
             carbonCopyLength = 0;
             this.carbonCopy = null;
         } else {
 
-            carbonCopyLength = carbonCopy.length;
-            this.carbonCopy = new String[carbonCopy.length];
-            System.arraycopy(carbonCopy,0,this.carbonCopy,0,carbonCopy.length);
+            this.carbonCopy = new ArrayList<>(carbonCopy);
+            carbonCopyLength = carbonCopy.size();
         }
 
         this.subject = subject;
@@ -63,23 +63,26 @@ public class SMTPConstructor {
      * @return the DATA part of the mail
      */
     public String data(){
+        CCIndex = 0;
+        StringBuilder data;
 
-        String data;
-        data = "DATA\r\n";
-        data += encoding(charset);
-        data += "From: " + mailFromUsername + " <" + mailFrom + ">\r\n";
-        data += "To: " + mailToUsername + " <" + mailTo + ">\r\n";
-        if(carbonCopyLength > 0) data += "CC: " + carbonCopy[0] + "\r\n";
-        data += "Subject: " + subject + "\r\n";
-        data += "\r\n";
-        data += messageText + "\r\n";
-        data += ".\r\n";
+        data = new StringBuilder("DATA\r\n");
+        data.append(encoding(charset));
+        data.append("From: ").append(mailFromUsername).append(" <").append(mailFrom).append(">\r\n");
+        data.append("To: ").append(mailToUsername).append(" <").append(mailTo).append(">\r\n");
+        while(carbonCopyLength > CCIndex){
+            data.append("CC: ").append(carbonCopy.get(CCIndex++)).append("\r\n");
+        }
+        data.append("Subject: ").append(subject).append("\r\n");
+        data.append("\r\n");
+        data.append(messageText).append("\r\n");
+        data.append(".\r\n");
 
-        return data;
+        return data.toString();
     }
 
     public String encoding(Charset charset){
-        return "Content-Type: text/plain; charset=" + charset + "\r\n";
+        return "Content-Type: text/html; charset=" + charset + "\r\n";
     }
 
     /**
@@ -97,10 +100,10 @@ public class SMTPConstructor {
     }
 
     /**
-     * @return the MAIL FROM part of the mail
+     * @return the RCP TO part of the mail for the CC emails
      */
     public String rcptToCC(){
-        return "RCPT TO: <" + carbonCopy[CCIndex++] + ">\r\n";
+        return "RCPT TO: <" + carbonCopy.get(CCIndex++) + ">\r\n";
     }
 
     /**

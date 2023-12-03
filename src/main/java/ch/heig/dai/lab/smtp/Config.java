@@ -1,19 +1,31 @@
 package ch.heig.dai.lab.smtp;
 
 
+import ch.heig.dai.lab.smtp.smtputils.SMTPConstructor;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.regex.Pattern;
 
+/**
+ * This is able to read json files that give the email and messages to be used in the spam mails {@link GroupEmail}
+ *
+ * @author      Arthur Junod
+ * @author      Edwin Haeffner
+ * Date :       30/11/2023
+ */
 public class Config {
-    protected final ArrayList<ArrayList<String>> VICTIM_LIST = new ArrayList<>();
+    protected final ArrayList<ArrayList<String>> VICTIM_LIST  = new ArrayList<>();
     protected final ArrayList<ArrayList<String>> MESSAGE_LIST = new ArrayList<>();
-    String configEmail = "configEmail.json";
+    String configEmail   = "configEmail.json";
     String configMessage = "configMessage.json";
 
-    public Config() {
+    /**Constructor
+     * @throws RuntimeException if one of the email in the list is invalid
+     */
+    public Config() throws RuntimeException{
 
         BufferedReader reader;
 
@@ -26,11 +38,12 @@ public class Config {
 
             while (line != null) {
                 if (line.contains("email")) {
-                    email = line.split(":")[1].replaceAll("[\",]", "").trim();
+                    //We remove the " and the , in the string that are artifacts of the json file
+                    email = line.split(":",2)[1].replaceAll("[\",]", "").trim();
                     VICTIM_LIST.add(new ArrayList<>());
                     VICTIM_LIST.get(counter).add(email);
                 } else if (line.contains("username")) {
-                    username = line.split(":")[1].replaceAll("[\",]", "").trim();
+                    username = line.split(":",2)[1].replaceAll("[\",]", "").trim();
                     VICTIM_LIST.get(counter).add(username);
                     counter++;
                 }
@@ -38,17 +51,12 @@ public class Config {
                 line = reader.readLine();
             }
 
-
             reader.close();
 
-
-            try {
-                if (!validateAllEmail()) {
-                    throw new RuntimeException("One of the email in the list is invalid !");
-                }
-            } catch (RuntimeException e) {
-                System.err.println(e.getMessage());
+            if (!validateAllEmail()) {
+                throw new RuntimeException("One of the email in the list is invalid !");
             }
+
 
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -63,21 +71,28 @@ public class Config {
 
             while (line != null) {
                 if (line.contains("subject")) {
-                    subject = line.split(":")[1].replaceAll("[\",]", "").trim();
+                    subject = line.split(":",2)[1].replaceAll("[\",]", "").trim();
                     MESSAGE_LIST.add(new ArrayList<>());
                     MESSAGE_LIST.get(counter).add(subject);
                 } else if (line.contains("body")) {
-                    message = line.split(":")[1].replaceAll("[\",]", "").trim();
+                    message = line.split(":",2)[1].replaceAll("[\",]", "").trim();
                     MESSAGE_LIST.get(counter).add(message);
                     counter++;
                 }
                 line = reader.readLine();
+
             }
+
+            reader.close();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
 
+    /**Check if the email is valid using a regex pattern and prints the invalid email
+     * @param email the email to check
+     * @return true if the email is valid, false otherwise
+     */
     public boolean isEmailValid(String email) {
         if (email == null)
             return false;
@@ -91,7 +106,9 @@ public class Config {
         return pat.matcher(email).matches();
     }
 
-
+    /**Check if all the email in the list are valid
+     * @return true if all the email are valid, false otherwise
+     */
     public boolean validateAllEmail() {
 
         for (ArrayList<String> a : VICTIM_LIST) {
@@ -101,7 +118,6 @@ public class Config {
                 return false;
             }
         }
-
 
         return true;
     }

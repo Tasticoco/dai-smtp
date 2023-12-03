@@ -39,9 +39,8 @@ public class SMTPSender {
      * @param ipv4          the ipv4 address of the server
      * @param port          the port of the server
      * @param display       if true, displays the messages sent and received
-     * @throws IOException  if the server is unreachable
      */
-    public static void sendMessage(SMTPConstructor mail,String ipv4,int port,boolean display) throws IOException {
+    public static void sendMessage(SMTPConstructor mail,String ipv4,int port,boolean display) {
 
         try (Socket socket = new Socket(ipv4, port);
              BufferedReader in = new BufferedReader(
