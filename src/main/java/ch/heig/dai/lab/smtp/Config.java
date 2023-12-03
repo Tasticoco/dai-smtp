@@ -11,7 +11,7 @@ public class Config {
     protected final ArrayList<ArrayList<String>> VICTIM_LIST = new ArrayList<>();
     protected final ArrayList<ArrayList<String>> MESSAGE_LIST = new ArrayList<>();
     String configEmail = "configEmail.json";
-    String configMessage = "configEmail.json";
+    String configMessage = "configMessage.json";
 
     public Config() {
 
@@ -105,4 +105,5 @@ public class Config {
 
         return true;
     }
+
 }

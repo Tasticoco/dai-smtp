@@ -51,13 +51,12 @@ public class SMTPSender {
                      new OutputStreamWriter(socket.getOutputStream(),
                              StandardCharsets.UTF_8)))
         {
-
-
-            TimeUnit.MILLISECONDS.sleep(1000); //To avoid the "You talk too soon" error
-
-            //Send the initial message
-            sendData(out, mail.hello(),display);
+            //Wait for the server to send the initial message
             waitResponse(in, smtpRcvMess[interfaceState.READY.ordinal()],display);
+
+            //Send the hello to initiate the SMTP handshake
+            sendData(out, mail.hello(),display);
+            waitResponse(in, smtpRcvMess[interfaceState.OK.ordinal()],display);
 
             //Send the mail from
             sendData(out, mail.from(),display);
@@ -86,8 +85,6 @@ public class SMTPSender {
 
         } catch (IOException e) {
             System.out.println("Client: exc.: " + e);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
         }
     }
 

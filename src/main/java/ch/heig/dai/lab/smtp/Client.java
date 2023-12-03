@@ -2,6 +2,7 @@ package ch.heig.dai.lab.smtp;
 
 import ch.heig.dai.lab.smtp.smtputils.SMTPConstructor;
 
+import javax.swing.*;
 import java.io.*;
 import java.util.ArrayList;
 
@@ -39,8 +40,10 @@ public class Client {
                     "Sender\n");
 
 
-            sendMessage(testMail,ipv4,port);
-            sendMessage(testMail,ipv4,port);
+//            sendMessage(testMail,ipv4,port,true);
+//            sendMessage(testMail,ipv4,port,true);
+
+            GroupEmail groupEmail = new GroupEmail(13,config);
 
             System.out.println("Client: end");
 
