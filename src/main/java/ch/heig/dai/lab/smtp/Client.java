@@ -4,6 +4,7 @@ import ch.heig.dai.lab.smtp.smtputils.SMTPConstructor;
 
 import javax.swing.*;
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
 import static ch.heig.dai.lab.smtp.smtputils.SMTPSender.sendMessage;
@@ -25,7 +26,6 @@ public class Client {
             Config config = new Config();
             System.out.println("Prank program SMTP");
 
-            ArrayList<ArrayList<String>> copyVictim = new ArrayList<>(config.VICTIM_LIST);
             ArrayList<ArrayList<String>> copyMessage = new ArrayList<>(config.MESSAGE_LIST);
 
 
@@ -34,13 +34,14 @@ public class Client {
                     "Test Email",
                     "Hello,\n" +
                     "\n" +
-                    "This is a test email sent via SMTP.\n" +
+                    "This is a test email sent via SMTP .д. !\n" +
                     "\n" +
                     "Regards,\n" +
-                    "Sender\n");
+                    "Sender\n",
+                    StandardCharsets.UTF_8);
 
 
-//            sendMessage(testMail,ipv4,port,true);
+              sendMessage(testMail,ipv4,port,true);
 //            sendMessage(testMail,ipv4,port,true);
 
             GroupEmail groupEmail = new GroupEmail(13,config);
@@ -48,6 +49,18 @@ public class Client {
             System.out.println("Client: end");
 
 
+    }
+
+    public void pranking(GroupEmail allGroup, ArrayList<ArrayList<String>> messages){
+        String mailFrom, mailFromUsername,mailTo,mailToUsername,subject,body;
+        ArrayList<String> 
+        for(ArrayList<String>  group : allGroup){
+
+            for(int j = 1; j < group.get(i).size(); ++j){
+
+            }
+            //SMTPConstructor
+        }
     }
 
 }
