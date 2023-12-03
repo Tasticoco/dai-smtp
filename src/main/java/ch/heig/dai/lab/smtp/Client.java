@@ -24,6 +24,7 @@ public class Client {
     public static void main(String[] args) throws InterruptedException, IOException {
 
             Config config = new Config();
+            GroupEmail allGroup = new GroupEmail(2, config);
             System.out.println("Prank program SMTP");
 
             ArrayList<ArrayList<String>> copyMessage = new ArrayList<>(config.MESSAGE_LIST);

@@ -11,6 +11,8 @@ public class GroupEmail {
     //Each group will be an Arraylist of strings
     protected ArrayList<ArrayList<ArrayList<String>>> groups;
 
+
+
     /**
      * Create a GroupEmail object that create groups of the same number of randomly chosen victims
      *
@@ -40,6 +42,7 @@ public class GroupEmail {
             }
         }
     }
+
 
     /**
      * Get the group of the index we give
