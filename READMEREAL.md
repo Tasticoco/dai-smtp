@@ -20,9 +20,7 @@ and we will use a mock SMTP server to test our program. *More information below.
 This project is a simple SMTP client that can be used to automate sending emails
 to a list of email addresses. Everything is configurable, from the number of groups
 you want to make to the messages you want to send and to which addresses you want to send them.
-
-
-
+___
 ## How does it work and how to use it ?
 
 ### The email configuration
