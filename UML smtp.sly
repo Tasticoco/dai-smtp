@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="iso-8859-15" standalone="no"?>
+<classDiagram>
+  <diagramElements defaultViewEntities="ALL" defaultViewEnum="true" defaultViewMethods="TYPE_AND_NAME" defaultVisibleTypes="true" informations="" name="SMTP Prank DAI">
+    <association aggregation="NONE" direction="SECOND_TO_FIRST" id="14496" name="uses v">
+      <role componentId="12410" name="" visibility="PRIVATE">
+        <multiplicity>
+          <min>1</min>
+          <max>1</max>
+        </multiplicity>
+      </role>
+      <role componentId="12409" name="" visibility="PRIVATE">
+        <multiplicity>
+          <min>1</min>
+          <max>2147483647</max>
+        </multiplicity>
+      </role>
+    </association>
+    <association aggregation="NONE" direction="BIDIRECTIONAL" id="14483" name="">
+      <role componentId="14026" name="" visibility="PRIVATE">
+        <multiplicity>
+          <min>1</min>
+          <max>1</max>
+        </multiplicity>
+      </role>
+      <role componentId="14027" name="" visibility="PRIVATE">
+        <multiplicity>
+          <min>1</min>
+          <max>1</max>
+        </multiplicity>
+      </role>
+    </association>
+    <entity entityType="ENUM" id="14027" name="interfaceState">
+      <EnumValue>READY</EnumValue>
+      <EnumValue>OK</EnumValue>
+      <EnumValue>INPUT_START</EnumValue>
+    </entity>
+    <entity entityType="CLASS" id="14026" isAbstract="false" name="SMTPSender" visibility="PUBLIC">
+      <attribute const="false" defaultValue="" isStatic="true" name="smtpRcvMess" type="String[]" visibility="PRIVATE"/>
+      <method is-constructor="true" isAbstract="false" isStatic="false" name="SMTPSender" returnType="" view="DEFAULT" visibility="PUBLIC">
+        <variable const="false" name="mail" type="SMTPConstructor"/>
+        <variable const="false" name="ipv4" type="String"/>
+        <variable const="false" name="port" type="int"/>
+        <variable const="false" name="display" type="boolean"/>
+      </method>
+      <method is-constructor="true" isAbstract="false" isStatic="false" name="SMTPSender" returnType="" view="DEFAULT" visibility="PUBLIC">
+        <variable const="false" name="mail" type="SMTPConstructor"/>
+        <variable const="false" name="ipv4" type="String"/>
+        <variable const="false" name="port" type="int"/>
+      </method>
+      <method isAbstract="false" isStatic="true" name="waitResponse" returnType="void" view="DEFAULT" visibility="PUBLIC">
+        <variable const="false" name="in" type="BufferedReader"/>
+        <variable const="false" name="reponse" type="String"/>
+        <variable const="false" name="display" type="boolean"/>
+      </method>
+      <method isAbstract="false" isStatic="false" name="sendData" returnType="void" view="DEFAULT" visibility="PUBLIC">
+        <variable const="false" name="out" type="BufferedWriter"/>
+        <variable const="false" name="data" type="String"/>
+        <variable const="false" name="display" type="boolean"/>
+      </method>
+    </entity>
+    <entity entityType="CLASS" id="12409" isAbstract="false" name="Client" visibility="PUBLIC">
+      <attribute const="false" defaultValue="" isStatic="false" name="port" type="int" visibility="PRIVATE"/>
+      <attribute const="false" defaultValue="" isStatic="false" name="ipv4" type="String" visibility="PRIVATE"/>
+      <method isAbstract="false" isStatic="false" name="main" returnType="void" view="DEFAULT" visibility="PUBLIC">
+        <variable const="false" name="args" type="String[]"/>
+      </method>
+      <method isAbstract="false" isStatic="false" name="pranking" returnType="void" view="DEFAULT" visibility="PUBLIC">
+        <variable const="false" name="allGroups" type="GroupEmail"/>
+        <variable const="false" name="messages" type="ArrayList&lt;ArrayList&lt;String&gt;&gt;"/>
+      </method>
+    </entity>
+    <entity entityType="CLASS" id="12410" isAbstract="false" name="Config" visibility="PUBLIC">
+      <attribute const="false" defaultValue="" isStatic="false" name="VICTIM_LIST" type="ArrayList&lt;ArrayList&lt;String&gt;&gt;" visibility="PROTECTED"/>
+      <attribute const="false" defaultValue="" isStatic="false" name="MESSAGE_LIST" type="ArrayList&lt;ArrayList&lt;String&gt;&gt;" visibility="PROTECTED"/>
+      <attribute const="false" defaultValue="" isStatic="false" name="configEmail" type="String" visibility="PACKAGE"/>
+      <attribute const="false" defaultValue="" isStatic="false" name="configMessage" type="String" visibility="PACKAGE"/>
+      <method is-constructor="true" isAbstract="false" isStatic="false" name="Config" returnType="" view="DEFAULT" visibility="PUBLIC"/>
+      <method isAbstract="false" isStatic="false" name="isEmailValid" returnType="boolean" view="DEFAULT" visibility="PUBLIC">
+        <variable const="false" name="email" type="String"/>
+      </method>
+      <method isAbstract="false" isStatic="false" name="validateAllEmail" returnType="boolean" view="DEFAULT" visibility="PRIVATE"/>
+    </entity>
+    <entity entityType="CLASS" id="12411" isAbstract="false" name="GroupEmail" visibility="PUBLIC">
+      <attribute const="false" defaultValue="" isStatic="false" name="nbGroup" type="int" visibility="PACKAGE"/>
+      <attribute const="false" defaultValue="" isStatic="false" name="groups" type="ArrayList&lt;ArrayList&lt;ArrayList&lt;String&gt;&gt;&gt;" visibility="PROTECTED"/>
+      <method is-constructor="true" isAbstract="false" isStatic="false" name="GroupEmail" returnType="" view="DEFAULT" visibility="PUBLIC">
+        <variable const="false" name="nbGroup" type="int"/>
+        <variable const="false" name="confEmail" type="Config"/>
+      </method>
+    </entity>
+    <entity entityType="CLASS" id="12593" isAbstract="false" name="SMTPConstructor" visibility="PUBLIC">
+      <attribute const="false" defaultValue="" isStatic="false" name="mailFrom" type="String" visibility="PRIVATE"/>
+      <attribute const="false" defaultValue="" isStatic="false" name="mailFromUsername" type="String" visibility="PRIVATE"/>
+      <attribute const="false" defaultValue="" isStatic="false" name="mailTo" type="String" visibility="PRIVATE"/>
+      <attribute const="false" defaultValue="" isStatic="false" name="mailToUsername" type="String" visibility="PRIVATE"/>
+      <attribute const="false" defaultValue="" isStatic="false" name="subject" type="String" visibility="PRIVATE"/>
+      <attribute const="false" defaultValue="" isStatic="false" name="messageText" type="String" visibility="PRIVATE"/>
+      <attribute const="false" defaultValue="" isStatic="false" name="charset" type="Charset" visibility="PRIVATE"/>
+      <attribute const="false" defaultValue="" isStatic="false" name="carbonCopy" type="ArrayList&lt;String&gt;" visibility="PRIVATE"/>
+      <attribute const="false" defaultValue="" isStatic="false" name="carbonCopyLength" type="int" visibility="PROTECTED"/>
+      <attribute const="false" defaultValue="" isStatic="false" name="CCIndex" type="int" visibility="PRIVATE"/>
+      <method is-constructor="true" isAbstract="false" isStatic="false" name="SMTPConstructor" returnType="" view="DEFAULT" visibility="PUBLIC">
+        <variable const="false" name="mailFrom" type="String"/>
+        <variable const="false" name="mailFromUsername" type="String"/>
+        <variable const="false" name="mailTo" type="String"/>
+        <variable const="false" name="mailToUsername" type="String"/>
+        <variable const="false" name="carbonCopy" type="ArrayList&lt;String&gt;"/>
+        <variable const="false" name="subject" type="String"/>
+        <variable const="false" name="messageText" type="String"/>
+        <variable const="false" name="encoding" type="Charset"/>
+      </method>
+      <method isAbstract="false" isStatic="false" name="data" returnType="String" view="DEFAULT" visibility="PUBLIC"/>
+      <method isAbstract="false" isStatic="false" name="from" returnType="String" view="DEFAULT" visibility="PUBLIC"/>
+      <method isAbstract="false" isStatic="false" name="rcptTo" returnType="String" view="DEFAULT" visibility="PUBLIC"/>
+      <method isAbstract="false" isStatic="false" name="encoding" returnType="String" view="DEFAULT" visibility="PUBLIC">
+        <variable const="false" name="charset" type="Charset"/>
+      </method>
+      <method isAbstract="false" isStatic="false" name="rcptToCC" returnType="String" view="DEFAULT" visibility="PUBLIC"/>
+      <method isAbstract="false" isStatic="false" name="hello" returnType="String" view="DEFAULT" visibility="PUBLIC"/>
+    </entity>
+  </diagramElements>
+  <umlView grid="10" name="Main view" open="true">
+    <relationView color="-12566464" relationId="14483">
+      <line>
+        <point>
+          <x>1031</x>
+          <y>471</y>
+        </point>
+        <point>
+          <x>1121</x>
+          <y>471</y>
+        </point>
+      </line>
+      <labelAssociation>
+        <x>1080</x>
+        <y>475</y>
+        <w>0</w>
+        <h>16</h>
+      </labelAssociation>
+      <roleAssociation>
+        <x>1035</x>
+        <y>475</y>
+        <w>0</w>
+        <h>16</h>
+      </roleAssociation>
+      <roleAssociation>
+        <x>1085</x>
+        <y>475</y>
+        <w>0</w>
+        <h>16</h>
+      </roleAssociation>
+      <multipliciteAssociation>
+        <x>1035</x>
+        <y>449</y>
+        <w>8</w>
+        <h>16</h>
+      </multipliciteAssociation>
+      <multipliciteAssociation>
+        <x>1107</x>
+        <y>449</y>
+        <w>8</w>
+        <h>16</h>
+      </multipliciteAssociation>
+    </relationView>
+    <relationView color="-12566464" relationId="14496">
+      <line>
+        <point>
+          <x>291</x>
+          <y>341</y>
+        </point>
+        <point>
+          <x>291</x>
+          <y>216</y>
+        </point>
+      </line>
+      <labelAssociation>
+        <x>295</x>
+        <y>271</y>
+        <w>39</w>
+        <h>16</h>
+      </labelAssociation>
+      <roleAssociation>
+        <x>295</x>
+        <y>319</y>
+        <w>0</w>
+        <h>16</h>
+      </roleAssociation>
+      <roleAssociation>
+        <x>295</x>
+        <y>220</y>
+        <w>0</w>
+        <h>16</h>
+      </roleAssociation>
+      <multipliciteAssociation>
+        <x>266</x>
+        <y>312</y>
+        <w>8</w>
+        <h>16</h>
+      </multipliciteAssociation>
+      <multipliciteAssociation>
+        <x>260</x>
+        <y>225</y>
+        <w>22</w>
+        <h>16</h>
+      </multipliciteAssociation>
+    </relationView>
+    <componentView color="-2079" componentID="12593" displayAttributes="true" displayDefault="true" displayMethods="true">
+      <geometry>
+        <x>560</x>
+        <y>40</y>
+        <w>1120</w>
+        <h>310</h>
+      </geometry>
+    </componentView>
+    <componentView color="-2079" componentID="12411" displayAttributes="true" displayDefault="true" displayMethods="true">
+      <geometry>
+        <x>130</x>
+        <y>520</y>
+        <w>300</w>
+        <h>100</h>
+      </geometry>
+    </componentView>
+    <componentView color="-2079" componentID="12410" displayAttributes="true" displayDefault="true" displayMethods="true">
+      <geometry>
+        <x>140</x>
+        <y>340</y>
+        <w>290</w>
+        <h>160</h>
+      </geometry>
+    </componentView>
+    <componentView color="-2079" componentID="12409" displayAttributes="true" displayDefault="true" displayMethods="true">
+      <geometry>
+        <x>40</x>
+        <y>100</y>
+        <w>470</w>
+        <h>115</h>
+      </geometry>
+    </componentView>
+    <componentView color="-2079" componentID="14026" displayAttributes="true" displayDefault="true" displayMethods="true">
+      <geometry>
+        <x>560</x>
+        <y>420</y>
+        <w>470</w>
+        <h>130</h>
+      </geometry>
+    </componentView>
+    <componentView color="-2079" componentID="14027" enumValuesVisible="DEFAULT">
+      <geometry>
+        <x>1120</x>
+        <y>430</y>
+        <w>150</w>
+        <h>104</h>
+      </geometry>
+    </componentView>
+  </umlView>
+</classDiagram>

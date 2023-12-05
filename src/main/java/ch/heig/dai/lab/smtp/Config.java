@@ -93,7 +93,7 @@ public class Config {
      * @param email the email to check
      * @return true if the email is valid, false otherwise
      */
-    public boolean isEmailValid(String email) {
+     public boolean isEmailValid(String email) {
         if (email == null)
             return false;
 
@@ -109,7 +109,7 @@ public class Config {
     /**Check if all the email in the list are valid
      * @return true if all the email are valid, false otherwise
      */
-    public boolean validateAllEmail() {
+    private boolean validateAllEmail() {
 
         for (ArrayList<String> a : VICTIM_LIST) {
 

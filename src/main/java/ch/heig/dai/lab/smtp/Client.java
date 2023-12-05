@@ -20,6 +20,8 @@ public class Client {
     private static int    port = 1025;
     private static String ipv4 = "localhost";
 
+    private static final Config config = new Config();
+
 
     public Client(int port,String ipv4){
         Client.port = port;
@@ -37,7 +39,6 @@ public class Client {
             if(args.length == 0){
                 System.out.println("Since no arguments were provided, there will be 5 groups");
             } else nbGroup = Integer.parseInt(args[0]);
-            Config config = new Config();
             System.out.println("Prank program SMTP");
 
             ArrayList<ArrayList<String>> copyMessage = new ArrayList<>(config.MESSAGE_LIST);

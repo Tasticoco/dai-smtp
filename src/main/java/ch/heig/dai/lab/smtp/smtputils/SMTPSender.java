@@ -29,7 +29,7 @@ public class SMTPSender {
      * @param port the port of the server
      * @throws IOException if the server is unreachable
      */
-    public static void sendMessage(SMTPConstructor mail,String ipv4,int port) throws IOException {
+    public static void sendMessage(SMTPConstructor mail,String ipv4,int port){
         sendMessage(mail,ipv4,port,false); //Doesn't display the messages by default
     }
 
