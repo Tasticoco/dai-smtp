@@ -30,13 +30,47 @@ and the rest are **receivers** or "Victims". Every group is generated from a lis
 that is configurable in the `configEmail.json` file. It's been set up this way for 
 ease of use as JSON is a pretty well known format and it's easy to read and write into.
 
+Example of `configEmail.json` :
+
+```json
+{
+  "VICTIM_LIST": [
+    {
+      "email": "jean-claude.van-damme@tropcool.com",
+      "username": "Jean-Claude Van Damme"
+    },
+    {
+      "email": "nicolas.sarkozy@ohouilafrance.fr",
+      "username": "Nicolas Sarkozy"
+    }
+  ]
+}
+```
+
 ### The message configuration
 
-Every messages are stored in the `configMessages.json` file. It's a simple JSON array
+Every message is stored in the `configMessages.json` file. It's a simple JSON array
 where each object is a message. The message has a `subject` and a `body` field. And you
 can add as many messages as you want. Know that the messages are picked randomly from
 this file list and if you want to send a specific message to a specific group, you can
 just remove the other messages from the file and only keep the one you want to send.
+
+Example of `configMessages.json` :
+
+```json
+{
+  "MESSAGE_LIST": [
+    {
+      "subject": "Découvrez le secret pour une jeunesse éternelle !",
+      "body": "Cher destinataire,<br><br>Vous avez été sélectionné pour bénéficier d'une offre exclusive. Des chercheurs réputés ont découvert le secret d'une jeunesse éternelle, et nous voulons le partager avec vous ! Cliquez sur le lien ci-dessous pour révéler l'astuce incroyable qui changera votre vie. Ne manquez pas cette opportunité unique !<br><br>[https://www.youtube.com/watch?v=dQw4w9WgXcQ]"
+    },
+    {
+      "subject": "Votre facture d'électricité explose ? Voici la solution !",
+      "body": "Bonjour,<br><br>Nous avons remarqué que votre facture d'électricité a augmenté de manière significative. Ne vous inquiétez pas, nous avons la solution parfaite pour vous ! Notre programme exclusif vous permettra de réduire vos coûts énergétiques de moitié. Cliquez sur le lien ci-dessous pour découvrir comment économiser dès maintenant. Ne laissez pas cette opportunité passer !<br><br>[https://www.youtube.com/watch?v=dQw4w9WgXcQ]"
+    }
+  ]
+}
+```
 
 ### The number of groups 
 

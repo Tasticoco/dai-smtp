@@ -39,6 +39,10 @@ public class Client {
             if(args.length == 0){
                 System.out.println("Since no arguments were provided, there will be 5 groups");
             } else nbGroup = Integer.parseInt(args[0]);
+            if(nbGroup < 0){
+                System.out.println("No valid arguments provided, there will be 5 groups");
+                nbGroup = 5;
+            }
             System.out.println("Prank program SMTP");
 
             ArrayList<ArrayList<String>> copyMessage = new ArrayList<>(config.MESSAGE_LIST);
