@@ -1,8 +1,5 @@
 package ch.heig.dai.lab.smtp;
 
-
-import ch.heig.dai.lab.smtp.smtputils.SMTPConstructor;
-
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;

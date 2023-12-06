@@ -24,6 +24,10 @@ you want to make to the messages you want to send and to which addresses you wan
 ___
 ## How does it work and how to use it?
 
+### Class diagram
+
+![](UML%20smtp.png)
+
 ### The email configuration
 
 The emails are sent in groups, where each group has **one sender**
