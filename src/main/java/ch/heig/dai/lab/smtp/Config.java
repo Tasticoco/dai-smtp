@@ -27,10 +27,7 @@ public class Config {
      */
     public Config() throws RuntimeException{
 
-        BufferedReader reader;
-
-        try {
-            reader = new BufferedReader(new FileReader(configEmail));
+        try(BufferedReader reader = new BufferedReader(new FileReader(configEmail));) {
             String line = reader.readLine();
             String email;
             String username;
@@ -62,8 +59,8 @@ public class Config {
             throw new RuntimeException(e);
         }
 
-        try {
-            reader = new BufferedReader(new FileReader(configMessage));
+        try (BufferedReader reader = new BufferedReader(new FileReader(configMessage));){
+
             String line = reader.readLine();
             String subject;
             String message;
@@ -83,7 +80,6 @@ public class Config {
 
             }
 
-            reader.close();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
