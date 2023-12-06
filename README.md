@@ -1,77 +1,193 @@
-DAI lab: SMTP
-=============
+# SMTP Pranking
+___
+>### Authors
+>Arthur Junod & Edwin Häffner
+> 
+>Based on [DAI lab: SMTP by Ehrensberger Juergen](https://github.com/HEIGVD-Course-DAI/dai-lab-smtp)
 
-Objectives
-----------
+## Introduction
+A simple SMTP client that can be used to automate sending emails to a list of email addresses.
 
-In this lab, you will develop a TCP client application in Java. This client application will use the Socket API to communicate with an SMTP server. The code that you write will include a **partial implementation of the SMTP protocol**.
+### Disclaimer
+Beware of your local laws, you might get in trouble for this ! You can read this to
+have more information about the legality of doing this : [Is it legal to prank people with this ?](https://anyleads.com/can-you-get-in-trouble-for-sending-unsolicited-emails)
 
-These are the objectives of the lab:
+As this is a school project, we are not responsible for any harm you might cause
+and we will use a mock SMTP server to test our program. *More information below.*
 
-* Implement a more complex TCP client application in Java, which uses the Socket API to communicate with an SMTP server.
-* Make practical experiments to become familiar with the **SMTP protocol**. After the lab, you should be able to use a command line tool to communicate with an SMTP server. You should be able to send well-formed messages to the server, in order to send emails to the address of your choice.
-* Design a simple object-oriented model to implement the functional requirements described in the next paragraph.
+## Description
 
+This project is a simple SMTP client that can be used to automate sending emails
+to a list of email addresses. Everything is configurable, from the number of groups
+you want to make to the messages you want to send and to which addresses you want to send them.
+___
+## How does it work and how to use it ?
 
-Functional requirements
------------------------
+### The email configuration
 
-Your mission is to develop a client application that automatically plays e-mail pranks on a list of victims:
+The emails are sent in groups, where each group has **one sender**
+and the rest are **receivers** or "Victims". Every group is generated from a list of emails
+that is configurable in the `configEmail.json` file. It's been set up this way for 
+ease of use as JSON is a pretty well known format and it's easy to read and write into.
 
-* As configuration, the user of your program should provide
-    1. the **victims list**: a file with a list of e-mail addresses,
-    2. the **messages list**: a file with several e-mail messages (subject and body),
-    3. the **number of groups** `n` on which the e-mail prank is played. This can be provided e.g., as a command line argument.
-* Your program should form `n` groups by selecting 2-5 e-mail addresses from the file for each group. The first address of the group is the sender, the others are the receivers (victims).
-* For each group, your program should select one of the e-mail messages.
-* The respective messages are then sent to the diffent groups using the SMTP protocol.
+Example of `configEmail.json` :
 
-Constraints
------------
+```json
+{
+  "VICTIM_LIST": [
+    {
+      "email": "jean-claude.van-damme@tropcool.com",
+      "username": "Jean-Claude Van Damme"
+    },
+    {
+      "email": "nicolas.sarkozy@ohouilafrance.fr",
+      "username": "Nicolas Sarkozy"
+    }
+  ]
+}
+```
 
-* Your client must be implemented in Java, with the `java.io` API.
-* The goal is for you to work at the wire protocol level (with the Socket API). Therefore, you CANNOT use a library that takes care of the protocol details. You have to work with the input and output streams.
-* The program must be configurable: the addresses, groups, messages CANNOT be hard-coded in the program and MUST be managed in config files.
-* You must send **one** e-mail per group, and not one e-mail for every member of every group.
-* There must be at least a simple validation process of the input files that displays errors on the console to describe what's wrong (e.g. an invalid number of groups, an invalid e-mail address that does not contain a '@' character, an invalid format, etc.).
-* The subject and body of the messages may contain non-ASCII characters. You have to encode the body and the subject of the e-mail correctly. You can find more information [here](https://ncona.com/2011/06/using-utf-8-characters-on-an-e-mail-subject/).
+### The message configuration
 
+Every message is stored in the `configMessages.json` file. It's a simple JSON array
+where each object is a message. The message has a `subject` and a `body` field. And you
+can add as many messages as you want. Know that the messages are picked randomly from
+this file list and if you want to send a specific message to a specific group, you can
+just remove the other messages from the file and only keep the one you want to send.
 
-Example
--------
+Example of `configMessages.json` :
 
-Consider that your program generates a group G1. The group sender is Bob. The group recipients are Alice, Claire and Peter. When the prank is played on group G1, then your program should pick one of the fake messages. It should communicate with an SMTP server, so that Alice, Claire and Peter receive an e-mail, which appears to be sent by Bob.
+```json
+{
+  "MESSAGE_LIST": [
+    {
+      "subject": "Découvrez le secret pour une jeunesse éternelle !",
+      "body": "Cher destinataire,<br><br>Vous avez été sélectionné pour bénéficier d'une offre exclusive. Des chercheurs réputés ont découvert le secret d'une jeunesse éternelle, et nous voulons le partager avec vous ! Cliquez sur le lien ci-dessous pour révéler l'astuce incroyable qui changera votre vie. Ne manquez pas cette opportunité unique !<br><br>[https://www.youtube.com/watch?v=dQw4w9WgXcQ]"
+    },
+    {
+      "subject": "Votre facture d'électricité explose ? Voici la solution !",
+      "body": "Bonjour,<br><br>Nous avons remarqué que votre facture d'électricité a augmenté de manière significative. Ne vous inquiétez pas, nous avons la solution parfaite pour vous ! Notre programme exclusif vous permettra de réduire vos coûts énergétiques de moitié. Cliquez sur le lien ci-dessous pour découvrir comment économiser dès maintenant. Ne laissez pas cette opportunité passer !<br><br>[https://www.youtube.com/watch?v=dQw4w9WgXcQ]"
+    }
+  ]
+}
+```
 
-SMTP server
------------
+### The number of groups 
 
-You can use [MailDev](https://github.com/maildev/maildev) as a mock SMTP server for your tests.  **Do not use a real SMTP server**.
+The number of groups is easily setup as a command line argument. You can just run the
+program with a number as an argument. If you don't specify this argument, **the default value is 5**.
 
-Use docker to start the server:
+### The SMTP server
+
+As it is probably not legal to actually send bad emails to people without their consent,
+it is highly recommended to use a mock SMTP server to test your program. We used [MailDev](https://github.com/maildev/maildev),
+which is a mock server that allows you to observe the traffic of the emails that are sent to it.
+It also has a WEB interface that allows you to see the emails that are sent to it.
+
+### How to set it up
+
+You can use docker to start the server:
 
     docker run -d -p 1080:1080 -p 1025:1025 maildev/maildev
 
-This provides a Web interface on localhost:1080 and a SMTP server on localhost:1025.
+This provides a website on localhost:1080 and a SMTP server on localhost:1025. And
+unless you tweak this program's code, you will only be able to send emails to the port 1025.
+*For obvious reasons.*
 
-Deliverables
-------------
+Then use :
 
-You will deliver the results of your lab in a GitHub repository. You do not have to fork a specific repo, you can create one from scratch.
+    mvn package
 
-Your repository should contain both the source code of your Java project and your report. Your report should be a single `README.md` file, located at the root of your repository. The images should be placed in a `figures` directory.
+to compile it with maven and create a .jar file.
 
-Your report MUST include the following sections:
+You then only have to use the command :
 
-* **A brief description of your project**: if people exploring GitHub find your repo, without a prior knowledge of the API course, they should be able to understand what your repo is all about and whether they should look at it more closely.
+    java -jar target/dai-smtp-1.0.jar <nbr-of-groups>
 
-* **Instructions for setting up your mock SMTP server**. The user who wants to experiment with your tool but does not really want to send pranks immediately should be able to use a mock SMTP server.
+And that's all you need to run your pranking program.
 
-* **Clear and simple instructions for configuring your tool and running a prank campaign**. If you do a good job, an external user should be able to clone your repo, edit a couple of files and send a batch of e-mails in less than 10 minutes.
+### Troubleshooting
 
-* **A description of your implementation**: document the key aspects of your code. It is a good idea to start with a **class diagram**. Decide which classes you want to show (focus on the important ones) and describe their responsibilities in text. It is also certainly a good idea to include examples of dialogues between your client and an SMTP server (maybe you also want to include some screenshots here).
+If you have a `FileNotFoundException` when trying to run the .jar you may have launched the command
+in a folder that doesn't contain neither a `configMessages.json` file nor a `configEmail.json` file.
 
-References
-----------
+You have to launch the command to launch the .jar in the folder that contains these two files.
 
-* The [SMTP RFC](<https://tools.ietf.org/html/rfc5321#appendix-D>), and in particular the [example scenario](<https://tools.ietf.org/html/rfc5321#appendix-D>)
-* The [mailtrap](<https://mailtrap.io/>) online service for testing SMTP
+## Example of running the program
+
+We launch it with:
+
+    java -jar target/dai-smtp-1.0.jar 2
+
+It will result in these SMTP messages (they will be displayed in the terminal):
+
+```shell
+Prank program SMTP
+220 704b82159354 ESMTP
+EHLO https://www.youtube.com/watch?v=dQw4w9WgXcQ
+
+250-704b82159354 Nice to meet you, [172.17.0.1]
+250-PIPELINING
+250-8BITMIME
+250 SMTPUTF8
+MAIL FROM: <jeremy.belpois@kadicacademy.fr>
+
+250 Accepted
+RCPT TO: <xana@lyoko.com>
+
+250 Accepted
+RCPT TO: <monsieurgaffes@maladroit.com>
+
+250 Accepted
+RCPT TO: <jean-claude.van-damme@tropcool.com>
+
+250 Accepted
+RCPT TO: <chewbacca@wookieeplanet.com>
+
+250 Accepted
+DATA
+Content-Type: text/html; charset=UTF-8
+From: Jeremy Belpois <jeremy.belpois@kadicacademy.fr>
+To: XANA <xana@lyoko.com>
+CC: monsieurgaffes@maladroit.com
+CC: jean-claude.van-damme@tropcool.com
+CC: chewbacca@wookieeplanet.com
+Subject: Votre compte PayPal est suspendu !
+
+Cher utilisateur PayPal<br><br>Nous avons détecté des activités inhabituelles sur votre compte entraînant sa suspension temporaire. Pour réactiver votre compte veuillez vous connecter en utilisant le lien ci-dessous et confirmer vos informations. Ne retardez pas cette procédure votre coopération est cruciale.<br><br>[https://www.youtube.com/watch?v=dQw4w9WgXcQ]
+.
+
+354 End data with <CR><LF>.<CR><LF>
+250 Message queued as zKTJNalR
+QUIT
+220 704b82159354 ESMTP
+EHLO https://www.youtube.com/watch?v=dQw4w9WgXcQ
+
+250-704b82159354 Nice to meet you, [172.17.0.1]
+250-PIPELINING
+250-8BITMIME
+250 SMTPUTF8
+MAIL FROM: <leonardo.dicaprio@hotmail.com>
+
+250 Accepted
+RCPT TO: <cornichonman@superhero.com>
+
+250 Accepted
+DATA
+Content-Type: text/html; charset=UTF-8
+From: Leonardo DiCaprio <leonardo.dicaprio@hotmail.com>
+To: Cornichon Man <cornichonman@superhero.com>
+Subject: Gagnez le titre du plus long baillement synchronisé
+
+Félicitations bâilleur synchronisé<br><br>Participez à notre concours pour remporter le titre du plus long baillement synchronisé. Préparez-vous à bâiller en harmonie avec d'autres ennuyés du monde entier. Soyez prêt à étirer votre ennui jusqu'à des sommets soporifiques !
+.
+
+354 End data with <CR><LF>.<CR><LF>
+250 Message queued as mBOAUsj0
+QUIT
+
+Client: end
+```
+Then, if you go to http://localhost:1080, you should be able to access your MailDev docker and see something like this: 
+
+![](MailDev_PrtSc.png)
