@@ -20,9 +20,6 @@ public class Client {
     private static int    port = 1025;
     private static String ipv4 = "localhost";
 
-    private static final Config config = new Config();
-
-
     public Client(int port,String ipv4){
         Client.port = port;
         Client.ipv4 = ipv4;  
@@ -35,6 +32,7 @@ public class Client {
     public static void main(String[] args){
 
         try{
+            Config config = new Config();
             int nbGroup = 5;
             if(args.length == 0){
                 System.out.println("Since no arguments were provided, there will be 5 groups");

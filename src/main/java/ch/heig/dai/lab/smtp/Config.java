@@ -4,6 +4,7 @@ package ch.heig.dai.lab.smtp;
 import ch.heig.dai.lab.smtp.smtputils.SMTPConstructor;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -55,6 +56,8 @@ public class Config {
             }
 
 
+        } catch (FileNotFoundException e){
+            throw new RuntimeException("File \"" + configEmail + "\" not found");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -80,8 +83,10 @@ public class Config {
 
             }
 
+        } catch (FileNotFoundException e){
+            throw new RuntimeException("File \"" + configMessage + "\" not found");
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException(e.getMessage());
         }
     }
 

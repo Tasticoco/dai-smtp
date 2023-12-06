@@ -110,10 +110,8 @@ And that's all you need to run your pranking program.
 
 ### Troubleshooting
 
-If you have a `FileNotFoundException` when trying to run the .jar you may have launched the command
-in a folder that doesn't contain neither a `configMessages.json` file nor a `configEmail.json` file.
-
-You have to launch the command to launch the .jar in the folder that contains these two files.
+If `File "configEmail.json" not found` or `File "configMessages.json" not found` is displayed then the terminal
+from which you are launching the .jar might be in a folder that doesn't contain these two files.
 
 ## Example of running the program
 
