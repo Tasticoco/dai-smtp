@@ -26,7 +26,7 @@ ___
 
 ### Class diagram
 
-![](UML%20smtp.png)
+![](figures/UML%20smtp.png)
 
 ### The email configuration
 
@@ -198,4 +198,4 @@ Client: end
 ```
 Then, if you go to http://localhost:1080, you should be able to access your MailDev docker and see something like this: 
 
-![](MailDev_PrtSc.png)
+![](figures/MailDev_PrtSc.png)
