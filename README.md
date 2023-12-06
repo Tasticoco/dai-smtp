@@ -136,36 +136,28 @@ EHLO https://www.youtube.com/watch?v=dQw4w9WgXcQ
 250-PIPELINING
 250-8BITMIME
 250 SMTPUTF8
-MAIL FROM: <jeremy.belpois@kadicacademy.fr>
+MAIL FROM: <angelina.jolie@yahoo.com>
 
 250 Accepted
-RCPT TO: <xana@lyoko.com>
+RCPT TO: <guy.parmelin@swisspolitics.com>
 
 250 Accepted
-RCPT TO: <monsieurgaffes@maladroit.com>
-
-250 Accepted
-RCPT TO: <jean-claude.van-damme@tropcool.com>
-
-250 Accepted
-RCPT TO: <chewbacca@wookieeplanet.com>
+RCPT TO: <odd.della.robbia@kadicacademy.fr>
 
 250 Accepted
 DATA
 Content-Type: text/html; charset=UTF-8
-From: Jeremy Belpois <jeremy.belpois@kadicacademy.fr>
-To: XANA <xana@lyoko.com>
-CC: monsieurgaffes@maladroit.com
-CC: jean-claude.van-damme@tropcool.com
-CC: chewbacca@wookieeplanet.com
-Subject: Votre compte PayPal est suspendu !
+From: Angelina Jolie <angelina.jolie@yahoo.com>
+To: Guy Parmelin <guy.parmelin@swisspolitics.com>
+Subject: Votre abonnement gratuit à la procrastination
 
-Cher utilisateur PayPal<br><br>Nous avons détecté des activités inhabituelles sur votre compte entraînant sa suspension temporaire. Pour réactiver votre compte veuillez vous connecter en utilisant le lien ci-dessous et confirmer vos informations. Ne retardez pas cette procédure votre coopération est cruciale.<br><br>[https://www.youtube.com/watch?v=dQw4w9WgXcQ]
+Cher maître de la procrastination<br><br>Nous avons le plaisir de vous informer que vous avez été automatiquement inscrit à notre programme d'abonnement gratuit à la procrastination. Pour annuler veuillez ignorer ce message et reporter cette tâche à plus tard. Vous pouvez aussi ne rien faire c'est tout aussi bien.
 .
 
 354 End data with <CR><LF>.<CR><LF>
-250 Message queued as zKTJNalR
+250 Message queued as mumWLDZX
 QUIT
+
 220 704b82159354 ESMTP
 EHLO https://www.youtube.com/watch?v=dQw4w9WgXcQ
 
@@ -173,23 +165,29 @@ EHLO https://www.youtube.com/watch?v=dQw4w9WgXcQ
 250-PIPELINING
 250-8BITMIME
 250 SMTPUTF8
-MAIL FROM: <leonardo.dicaprio@hotmail.com>
+MAIL FROM: <garen@demacia.com>
 
 250 Accepted
 RCPT TO: <cornichonman@superhero.com>
 
 250 Accepted
+RCPT TO: <yumi.ishiyama@kadicacademy.fr>
+
+250 Accepted
+RCPT TO: <clark.kent@superman.com>
+
+250 Accepted
 DATA
 Content-Type: text/html; charset=UTF-8
-From: Leonardo DiCaprio <leonardo.dicaprio@hotmail.com>
+From: Garen <garen@demacia.com>
 To: Cornichon Man <cornichonman@superhero.com>
-Subject: Gagnez le titre du plus long baillement synchronisé
+Subject: Devenez un expert en observations nuageuses
 
-Félicitations bâilleur synchronisé<br><br>Participez à notre concours pour remporter le titre du plus long baillement synchronisé. Préparez-vous à bâiller en harmonie avec d'autres ennuyés du monde entier. Soyez prêt à étirer votre ennui jusqu'à des sommets soporifiques !
+Salut observateur du ciel<br><br>Rejoignez notre programme exclusif pour devenir un expert en observations nuageuses. Apprenez à distinguer les nuages cumulus des nuages stratus même si personne ne vous demande jamais de le faire. Soyez prêt à briller sous le ciel sans intérêt !
 .
 
 354 End data with <CR><LF>.<CR><LF>
-250 Message queued as mBOAUsj0
+250 Message queued as CzjmoSQZ
 QUIT
 
 Client: end
