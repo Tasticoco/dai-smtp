@@ -12,6 +12,7 @@ import java.util.ArrayList;
  */
 public class SMTPConstructor {
 
+    private final static boolean BCC = true;
     final private String mailFrom
                   ,mailFromUsername
                   ,mailTo
@@ -70,7 +71,7 @@ public class SMTPConstructor {
         data.append(encoding(charset));
         data.append("From: ").append(mailFromUsername).append(" <").append(mailFrom).append(">\r\n");
         data.append("To: ").append(mailToUsername).append(" <").append(mailTo).append(">\r\n");
-        while(carbonCopyLength > CCIndex){
+        while(!BCC && carbonCopyLength > CCIndex){
             data.append("CC: ").append(carbonCopy.get(CCIndex++)).append("\r\n");
         }
         data.append("Subject: ").append(subject).append("\r\n");

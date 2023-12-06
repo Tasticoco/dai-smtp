@@ -86,6 +86,12 @@ it is highly recommended to use a mock SMTP server to test your program. We used
 which is a mock server that allows you to observe the traffic of the emails that are sent to it.
 It also has a WEB interface that allows you to see the emails that are sent to it.
 
+### BCC
+
+The program uses BCC to send one email to multiple people (you can still see it in MailDev).
+If you want to send it but with CC instead you can edit by hand the `private final static boolean BCC` 
+that is in the *SMTPConstructor* class.
+
 ### How to set it up
 
 You can use docker to start the server:
