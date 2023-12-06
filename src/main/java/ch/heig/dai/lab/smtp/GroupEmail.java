@@ -6,12 +6,8 @@ import java.util.Random;
 
 public class GroupEmail {
 
-    int nbGroup;
-
     //Each group will be an Arraylist of strings
     protected ArrayList<ArrayList<ArrayList<String>>> groups;
-
-
 
     /**
      * Create a GroupEmail object that create groups of the same number of randomly chosen victims
@@ -21,7 +17,6 @@ public class GroupEmail {
      * @throws IllegalArgumentException If the number of group is too high for the number of victims
      */
     public GroupEmail(int nbGroup, Config confEmail) throws IllegalArgumentException{
-        this.nbGroup = nbGroup;
         groups = new ArrayList<>(nbGroup);
         ArrayList<ArrayList<String>> copyVictim = new ArrayList<>(confEmail.VICTIM_LIST);
 
