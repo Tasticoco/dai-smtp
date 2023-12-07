@@ -72,7 +72,7 @@ public class Config {
                     MESSAGE_LIST.add(new ArrayList<>());
                     MESSAGE_LIST.get(counter).add(subject);
                 } else if (line.contains("body")) {
-                    message = line.split(":",2)[1].replaceAll("[\",]", "").trim();
+                    message = line.split(":",2)[1].replaceAll("\"", "").trim();
                     MESSAGE_LIST.get(counter).add(message);
                     counter++;
                 }
